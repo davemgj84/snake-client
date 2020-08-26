@@ -9,6 +9,11 @@ const connect = function() {
     port: 50542
   });
 
+  conn.on('connect', () => {
+    console.log("Successfully connected to game server!");
+    conn.write("Name: DMJ");
+  });
+
   // an event handler to handle incoming data.
   // console log it for the player
   conn.on('data', (data) => {
