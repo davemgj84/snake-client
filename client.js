@@ -9,9 +9,11 @@ const connect = function() {
     port: 50542
   });
 
+  // once established connection - prints message. Also writes or sends data back to server with name.
   conn.on('connect', () => {
     console.log("Successfully connected to game server!");
     conn.write("Name: DMJ");
+    // conn.write("Move: up");
   });
 
   // an event handler to handle incoming data.
@@ -27,3 +29,8 @@ const connect = function() {
 };
 
 module.exports = connect;
+
+// "Move: up" - move up one square (unless facing down)
+// "Move: down" - move down one square (unless facing up)
+// "Move: left" - move left one square (unless facing right)
+// "Move: right" - move left one square (unless facing left)
