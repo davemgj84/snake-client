@@ -1,25 +1,7 @@
 // Multi-Player Snake Game :
 
-const net = require('net');
-
-// Establishes connection with the game server
-const connect = function() {
-  const conn = net.createConnection({
-    host: '135.23.222.131',
-    port: 50542
-  });
-
-  // an event handler to handle incoming data.
-  // console log it for the player
-  conn.on('data', (data) => {
-    console.log('Server says: ', data);
-  });
-  
-  // interpret incoming data as text
-  conn.setEncoding('utf8');
-
-  return conn;
-};
+const connect = require('./client');
 
 console.log('Connecting ...');
+
 connect();
