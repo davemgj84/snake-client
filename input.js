@@ -1,8 +1,9 @@
 // Setup User Interface
 // Specifically, so that we can handle user input via stdin
 
-// Had to bring in connect() then name it to a variable so that I could use conn.write for user Input
+const { responses } = require('./constants');
 
+// Had to bring in connect() then name it to a variable so that I could use conn.write for user Input
 let connection;
 
 const setupInput = function(conn) {
@@ -21,26 +22,10 @@ const handleUserInput = function(key) {
   if (key === '\u0003') {
     process.exit();
   }
-  if (key === 'w') {
-    conn.write('Move: up');
-  }
-  if (key === 'a') {
-    conn.write('Move: left');
-  }
-  if (key === 's') {
-    conn.write('Move: down');
-  }
-  if (key === 'd') {
-    conn.write('Move: right');
-  }
-  if (key === 'e') {
-    conn.write("Say: Ssss");
-  }
-  if (key === 'r') {
-    conn.write("Say: David");
-  }
-  if (key === 'q') {
-    conn.write("Say: Meow?");
+  for (letter in responses) {
+    if (letter === key) {
+      conn.write(responses[letter]);
+    }
   }
 };
 
