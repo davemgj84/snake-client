@@ -2,10 +2,11 @@
 // Specifically, so that we can handle user input via stdin
 
 // Had to bring in connect() then name it to a variable so that I could use conn.write for user Input
-const { connect } = require('./client');
-const conn = connect();
 
-const setupInput = function() {
+let connection;
+
+const setupInput = function(conn) {
+  connection = conn;
   const stdin = process.stdin;
   stdin.setRawMode(true);
   stdin.setEncoding('utf8');
@@ -16,6 +17,7 @@ const setupInput = function() {
 
 // Handles user input and allows for 'Ctrl + C' to exit:
 const handleUserInput = function(key) {
+  let conn = connection;
   if (key === '\u0003') {
     process.exit();
   }
@@ -30,6 +32,15 @@ const handleUserInput = function(key) {
   }
   if (key === 'd') {
     conn.write('Move: right');
+  }
+  if (key === 'e') {
+    conn.write("Say: Ssss");
+  }
+  if (key === 'r') {
+    conn.write("Say: David");
+  }
+  if (key === 'q') {
+    conn.write("Say: Meow?");
   }
 };
 
